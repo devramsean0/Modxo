@@ -33,7 +33,7 @@ if (PICO_SDK_VERSION_STRING VERSION_LESS "1.4.0")
 endif()
 
 set(PROJECT_NAME bsx_firmware)
-if(#{MODXO_PINOUT} MATCHES "bsx)
+if(${MODXO_PINOUT} MATCHES "bsx")
     set(PROJECT_NAME bsx_firmware)
 endif()
 

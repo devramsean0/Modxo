@@ -13,14 +13,8 @@ set(LED_STRIP3 31) #Not Used
 set(LED_STRIP4 31) #Not Used
 
 #pinout selector
-if(${MODXO_PINOUT} MATCHES "official_pico")
-    include(boards/official_pico.cmake)
-elseif(${MODXO_PINOUT} MATCHES "yd_rp2040")
-    include(boards/yd_rp2040.cmake)
-elseif(${MODXO_PINOUT} MATCHES "rp2040_zero")
-    include(boards/rp2040_zero.cmake)
-elseif(${MODXO_PINOUT} MATCHES "ultra")
-    include(boards/ultra.cmake)
+if(${MODXO_PINOUT} MATCHES "bsx-firmware")
+    include(boards/bsx.cmake)
 else()
     set(MODXO_PINOUT "official_pico")
     message(STATUS "NOTE: Modxo pinout not defined.")

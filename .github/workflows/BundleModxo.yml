@@ -1,4 +1,4 @@
-name: Bundle Modxo
+name: Bundle BSX-Firmware
 
 on:
   push:
@@ -25,29 +25,11 @@ jobs:
       - name: Create Build Folder
         run: |
           mkdir build
-
-      - name: Build Modxo Official Pico
+    
+      - name: Build BSX
         run: |
           cd ${{ github.workspace }}/build
-          cmake -DPICO_SDK_PATH=${{ github.workspace }}/pico-sdk -DMODXO_PINOUT=official_pico .. 
-          cmake --build .
-
-      - name: Build Modxo YD-RP2040
-        run: |
-          cd ${{ github.workspace }}/build
-          cmake -DPICO_SDK_PATH=${{ github.workspace }}/pico-sdk -DMODXO_PINOUT=yd_rp2040 .. 
-          cmake --build .
-
-      - name: Build Modxo RP2040-Zero
-        run: |
-          cd ${{ github.workspace }}/build
-          cmake -DPICO_SDK_PATH=${{ github.workspace }}/pico-sdk -DMODXO_PINOUT=rp2040_zero .. 
-          cmake --build .
-
-      - name: Build Modxo Ultra
-        run: |
-          cd ${{ github.workspace }}/build
-          cmake -DPICO_SDK_PATH=${{ github.workspace }}/pico-sdk -DMODXO_PINOUT=ultra .. 
+          cmake -DPICO_SDK_PATH=${{ github.workspace }}/pico-sdk -DMODXO_PINOUT=bsx .. 
           cmake --build .
 
       - name: List Files
@@ -59,25 +41,13 @@ jobs:
           tag_name: latest
           draft: true
           files: |
-            ${{ github.workspace }}/build/modxo_official_pico.bin
-            ${{ github.workspace }}/build/modxo_official_pico.uf2
-            ${{ github.workspace }}/build/modxo_yd_rp2040.bin
-            ${{ github.workspace }}/build/modxo_yd_rp2040.uf2
-            ${{ github.workspace }}/build/modxo_rp2040_zero.bin
-            ${{ github.workspace }}/build/modxo_rp2040_zero.uf2
-            ${{ github.workspace }}/build/modxo_ultra.bin
-            ${{ github.workspace }}/build/modxo_ultra.uf2
+            ${{ github.workspace}}/build/bsx-firmware.bin
+            ${{ github.workspace}}/build/bsx-firmware.uf2
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            ${{ github.workspace }}/build/modxo_official_pico.bin
-            ${{ github.workspace }}/build/modxo_official_pico.uf2
-            ${{ github.workspace }}/build/modxo_yd_rp2040.bin
-            ${{ github.workspace }}/build/modxo_yd_rp2040.uf2
-            ${{ github.workspace }}/build/modxo_rp2040_zero.bin
-            ${{ github.workspace }}/build/modxo_rp2040_zero.uf2
-            ${{ github.workspace }}/build/modxo_ultra.bin
-            ${{ github.workspace }}/build/modxo_ultra.uf2
+            ${{ github.workspace}}/build/bsx-firmware.bin
+            ${{ github.workspace}}/build/bsx-firmware.uf2

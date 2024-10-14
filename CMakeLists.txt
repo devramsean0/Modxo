@@ -33,8 +33,10 @@ if (PICO_SDK_VERSION_STRING VERSION_LESS "1.4.0")
 endif()
 
 set(PROJECT_NAME bsx_firmware)
-if(${MODXO_PINOUT} MATCHES "bsx")
-    set(PROJECT_NAME bsx_firmware)
+if(${MODXO_PINOUT} MATCHES "nova")
+    set(PROJECT_NAME bsx_nova)
+elseif(${MODXO_PINOUT} MATCHES "mini")
+    set(PROJECT_NAME bsx_mini)
 endif()
 
 project(${PROJECT_NAME})

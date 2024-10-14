@@ -13,11 +13,13 @@ set(LED_STRIP3 31) #Not Used
 set(LED_STRIP4 31) #Not Used
 
 #pinout selector
-if(${MODXO_PINOUT} MATCHES "bsx-firmware")
-    include(boards/bsx.cmake)
+if(${MODXO_PINOUT} MATCHES "nova")
+    include(boards/nova.cmake)
+elseif(${MODXO_PINOUT} MATCHES "mini")
+    include(boards/mini.cmake)
 else()
-    set(MODXO_PINOUT "official_pico")
-    message(STATUS "NOTE: Modxo pinout not defined.")
-    include(boards/official_pico.cmake)
+    set(MODXO_PINOUT "nova")
+    message(STATUS "NOTE: pinout not defined.")
+    include(boards/nova.cmake)
 endif()
 message(STATUS "Building for ${MODXO_PINOUT}.")

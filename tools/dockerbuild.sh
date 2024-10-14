@@ -27,9 +27,9 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-mv "${BUILD_DIR}/modxo_${BOARD}.bin" "${OUT_DIR}/" && \
-mv "${BUILD_DIR}/modxo_${BOARD}.uf2" "${OUT_DIR}/" && \
-mv "${BUILD_DIR}/modxo_${BOARD}.elf" "${OUT_DIR}/" && \
+mv "${BUILD_DIR}/bsx_${BOARD}.bin" "${OUT_DIR}/" && \
+mv "${BUILD_DIR}/bsx_${BOARD}.uf2" "${OUT_DIR}/" && \
+mv "${BUILD_DIR}/bsx_${BOARD}.elf" "${OUT_DIR}/" && \
 echo "Build successful. Files are in ${OUT_DIR}" || \
 echo "Build failed"
 

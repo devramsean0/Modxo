@@ -26,10 +26,14 @@ jobs:
         run: |
           mkdir build
     
-      - name: Build BSX
+      - name: Build Nova
         run: |
           cd ${{ github.workspace }}/build
-          cmake -DPICO_SDK_PATH=${{ github.workspace }}/pico-sdk -DMODXO_PINOUT=bsx .. 
+          cmake -DPICO_SDK_PATH=${{ github.workspace }}/pico-sdk -DMODXO_PINOUT=nova .. 
+          cmake --build .
+      - name: Build Mini
+          cd ${{ github.workspace}}/build
+          cmake -DPICO_SDK_PATH=${{ github.workspace }}/pico-sdk -DMODXO_PINOUT=mini ..
           cmake --build .
 
       - name: List Files
@@ -41,13 +45,17 @@ jobs:
           tag_name: latest
           draft: true
           files: |
-            ${{ github.workspace}}/build/bsx-firmware.bin
-            ${{ github.workspace}}/build/bsx-firmware.uf2
+            ${{ github.workspace}}/build/bsx-nova.bin
+            ${{ github.workspace}}/build/bsx-nova.uf2
+            ${{ github.workspace}}/build/bsx-mini.bin
+            ${{ github.workspace}}/build/bsx-mini.uf2
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            ${{ github.workspace}}/build/bsx-firmware.bin
-            ${{ github.workspace}}/build/bsx-firmware.uf2
+            ${{ github.workspace}}/build/bsx-nova.bin
+            ${{ github.workspace}}/build/bsx-nova.uf2
+            ${{ github.workspace}}/build/bsx-mini.bin
+            ${{ github.workspace}}/build/bsx-mini.uf2

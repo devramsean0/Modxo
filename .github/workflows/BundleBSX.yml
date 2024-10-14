@@ -32,6 +32,7 @@ jobs:
           cmake -DPICO_SDK_PATH=${{ github.workspace }}/pico-sdk -DMODXO_PINOUT=nova .. 
           cmake --build .
       - name: Build Mini
+        run: |
           cd ${{ github.workspace}}/build
           cmake -DPICO_SDK_PATH=${{ github.workspace }}/pico-sdk -DMODXO_PINOUT=mini ..
           cmake --build .
